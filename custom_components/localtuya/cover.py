@@ -82,6 +82,11 @@ class LocaltuyaCover(LocalTuyaEntity, CoverEntity):
         return supported_features
 
     @property
+    def assumed_state(self):
+        """The device state cannot be trusted, so keep controls always enabled."""
+        return True
+
+    @property
     def current_cover_position(self):
         """Return current cover position in percent."""
         if self._config[CONF_POSITIONING_MODE] == COVER_MODE_NONE:
